@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock</title>
+  <style>
+*{
+  margin: 0;
+  padding: 0;
+}
+
+    .box{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    #date{
+      font-size: 220px;
+    }
+    #time{
+      font-size: 320px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h1 id="date"></h1>
+    <h1 id="time"></h1>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+  <script>
+  
+    setInterval(() => {
+      setCurrentTime();
+    }, 200);
+
+
+    function setCurrentTime(){
+      
+      let today = new Date();
+  
+      let year = today.getFullYear(); // 년도
+      let month = setStrLength((today.getMonth() + 1).toString())  // 월
+      let date = today.getDate().toString()  // 날짜
+
+
+      let dateText = `${year}-${setStrLength(month)}-${setStrLength(date)}`;
+  
+      let hours = today.getHours().toString(); // 시
+      let minutes = today.getMinutes().toString();  // 분
+      let seconds = today.getSeconds().toString();  // 초
+
+      let time = `${setStrLength(hours)}:${setStrLength(minutes)}:${setStrLength(seconds)}`;
+
+      $('#date').text(dateText);
+      $('#time').text(time);
+    }
+
+    function setStrLength(str){
+        return str.padStart(2,'0');
+    }
+
+
+  </script>
+</body>
+
+</html>
